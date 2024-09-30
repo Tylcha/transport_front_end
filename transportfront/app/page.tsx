@@ -12,12 +12,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
         <Carousel></Carousel>
         <Duyurular></Duyurular>
-
-       
-
-
-        <p>akndjkads</p>
-        <p>alkjsndksd</p>
+        
       </main>
       <Footer />
     </div>
