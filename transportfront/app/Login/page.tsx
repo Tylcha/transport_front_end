@@ -1,18 +1,24 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import logo from '@/puclic/logo.svg';
 import Header from '@/components/Header';
-
+import { useRouter } from 'next/navigation'
 
 import axios from 'axios';
 
-function login() {
+function Login() {
     const [tc, setTc] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('') //hata yonetimi
+    const [mounted, setMounted] = useState(false); // Mount kontrolü
+    const router = useRouter();
+
+    useEffect(() => {
+        setMounted(true); // Bileşen tarayıcıda yüklendiğinde true yapıyoruz
+    }, []);
 
 
-   
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); // Formun varsayılan davranışını engelliyoruz
 
@@ -21,9 +27,19 @@ function login() {
                 tc,
                 password
             });
-            console.log('Login successful:', response.data);
+            // Eğer giriş başarılıysa token'ı kaydediyoruz
+            const { accessToken } = response.data.user;
+            if (accessToken) {
+                localStorage.setItem('accessToken', accessToken);
+                console.log('Login successful:', response.data);
+
+                // Giriş başarılı olduğunda kullanıcıyı yönlendiriyoruz
+                router.push('/adminDashboard');
+            }
         } catch (error) {
             console.error('Error during login:', error);
+            // Eğer giriş başarısızsa kullanıcıya hata mesajı gösterebilirsin
+            setErrorMessage('TC veya şifre hatalı. Lütfen tekrar deneyin.');
         }
     };
     return (
@@ -72,4 +88,4 @@ function login() {
     );
 }
 
-export default login;
+export default Login;
