@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '@/puclic/logo.svg';
+import logo from '@/public/logo.svg';
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation'
 

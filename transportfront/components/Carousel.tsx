@@ -1,5 +1,5 @@
 import Image from "next/image";
-import kule from '../puclic/kule.jpg';
+import kule from '../public/kule.jpg';
 
 function Carousel() {
     return (

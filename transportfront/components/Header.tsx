@@ -1,7 +1,6 @@
 import next from "next/link";
 import Image from "next/image";
-import logo from '../puclic/logo.svg'
-import link from 'next/link'
+import logo from '../public/logo.svg'
 import Link from "next/link";
 
 export default function Header() {
